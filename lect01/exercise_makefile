@@ -1,0 +1,14 @@
+TARGET = hello
+OBJS = exercise_a.o exercise_b.o
+CC = gcc
+
+$(TARGET): $(OBJS)
+	$(CC) -o $(TARGET) $(OBJS)
+
+a.o: a.c
+	$(CC) -c exercise_a.c
+
+b.o: b.c
+	$(CC) -c exercise_b.c
+
+
