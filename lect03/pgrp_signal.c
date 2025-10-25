@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 			sleep(1);
 		}
 	} else {
-		printf("PGRP of parent %d\n", getpgrp());
+		printf("PGRP of parent = %d\n", getpgrp());
 
 		sleep(5);
 		kill(pid, 9);	// kill(-getid(), 9)를 해보면...?
