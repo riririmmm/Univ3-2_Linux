@@ -1,0 +1,22 @@
+CC = gcc
+CFLAGS = -Wall -O2
+
+HDR = pcb_expand.h
+
+PARENT = parent_expand
+CHILD = child_expand
+
+all: $(PARENT) $(CHILD)
+
+# parent_upgrade 빌드
+$(PARENT): parent_expand.c $(HDR)
+	$(CC) $(CFLAGS) parent_expand.c -o $(PARENT)
+
+# child_upgrade 빌드
+$(CHILD): child_expand.c $(HDR)
+	$(CC) $(CFLAGS) child_expand.c -o $(CHILD)
+
+# clean
+clean:
+	rm -f $(PARENT) $(CHILD)
+

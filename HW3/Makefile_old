@@ -1,0 +1,13 @@
+CC = gcc
+CFLAGS = -Wall -O2
+
+all: parent child
+
+parent: parent.c pcb.h
+	$(CC) $(CFLAGS) parent.c -o parent
+
+child: child.c pcb.h
+	$(CC) $(CFLAGS) child.c -o child
+
+clean:
+	rm -f parent child
