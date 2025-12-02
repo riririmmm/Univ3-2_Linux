@@ -18,13 +18,24 @@ int main() {
 	char *data = malloc(MEM_SIZE);
 	memset(data, 1, MEM_SIZE);
 	pid_t pid = fork();
+
 	if (pid == 0) {		// child
 		long pf_before = get_minor_page_faults();
+
 		volatile char tmp;
-		for (int i = 0; i < MEM_SIZE; i += PAGE_SIZE) tmp = data[i];
+		for (int i = 0; i < MEM_SIZE; i += PAGE_SIZE) 
+			tmp = data[i];
+
 		long pf_after_read = get_minor_page_faults();
-		for (int i = 0; i < MEM_SIZE; i += PAGE_SIZE) data[i] = 2;
+		for (int i = 0; i < MEM_SIZE; i += PAGE_SIZE) 
+			data[i] = 2;
+
 		long pf_after_write = get_minor_page_faults();
+
+		printf("Minor faults before: \t%ld\n", pf_before);
+    		printf("After read test: \t%ld\n", pf_after_read);
+    		printf("After write test: \t%ld\n", pf_after_write);
+
 		free(data);
 		exit(0);
 	} else {
